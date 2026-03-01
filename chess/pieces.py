@@ -18,8 +18,8 @@ class BaseChessPiece(ABC):
         pass
 
 class Pawn(BaseChessPiece):
-    def __init__(self, color, position):
-        super().__init__(color, 'Pawn', '-', 'pawn', position)
+    def __init__(self, color, identifier):
+        super().__init__(color, 'Pawn', '-', 'pawn', identifier)
 
     def __str__(self):
         return f"{self.color} {self.name} {self.identifier}"
@@ -35,8 +35,8 @@ class Pawn(BaseChessPiece):
         self.is_alive = False
 
 class Rook(BaseChessPiece):
-    def __init__(self, color, position):
-        super().__init__(color, 'Rook', 'R', 'rook', position)
+    def __init__(self, color, identifier):
+        super().__init__(color, 'Rook', 'R', 'rook', identifier)
 
     def __str__(self):
         return f"{self.color} {self.name} {self.identifier}"
@@ -51,8 +51,8 @@ class Rook(BaseChessPiece):
         self.is_alive = False
 
 class Bishop(BaseChessPiece):
-    def __init__(self, color, position):
-        super().__init__(color, 'Bishop', 'B', 'bishop', position)
+    def __init__(self, color, identifier):
+        super().__init__(color, 'Bishop', 'B', 'bishop', identifier)
 
     def __str__(self):
         return f"{self.color} {self.name} {self.identifier}"
@@ -67,8 +67,8 @@ class Bishop(BaseChessPiece):
         self.is_alive = False
 
 class Knight(BaseChessPiece):
-    def __init__(self, color, position):
-        super().__init__(color, 'Knight', 'N', 'knight', position)
+    def __init__(self, color, identifier):
+        super().__init__(color, 'Knight', 'N', 'knight', identifier)
 
     def __str__(self):
         return f"{self.color} {self.name} {self.identifier}"
@@ -83,8 +83,8 @@ class Knight(BaseChessPiece):
         self.is_alive = False
 
 class Queen(BaseChessPiece):
-    def __init__(self, color, position):
-        super().__init__(color, 'Queen', 'Q', 'queen', position)
+    def __init__(self, color, identifier):
+        super().__init__(color, 'Queen', 'Q', 'queen', identifier)
 
     def __str__(self):
         return f"{self.color} {self.name} {self.identifier}"
@@ -99,8 +99,8 @@ class Queen(BaseChessPiece):
         self.is_alive = False
 
 class King(BaseChessPiece):
-    def __init__(self, color, position):
-        super().__init__(color, 'King', 'K', 'king', position)
+    def __init__(self, color, identifier):
+        super().__init__(color, 'King', 'K', 'king', identifier)
 
     def __str__(self):
         return f"{self.color} {self.name} {self.identifier}"
