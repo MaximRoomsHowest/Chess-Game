@@ -10,8 +10,8 @@ class BaseChessPiece(ABC):
         self.is_alive = True
 
     @abstractmethod
-    def move(self):
-        pass
+    def move(self, movement):
+        print(movement)
 
     @abstractmethod
     def die(self):
@@ -28,7 +28,8 @@ class Pawn(BaseChessPiece):
         return f"{self.color} {self.name} {self.identifier}"
     
     def move(self):
-        print("Pawn moves forward 1 position")
+        movement = "forward 1 position"
+        super().move(movement)
 
     def die(self):
         self.is_alive = False
