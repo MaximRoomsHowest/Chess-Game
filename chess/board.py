@@ -42,3 +42,24 @@ class Board():
         for row in range(1, 9):
             row_pieces = [str(self.squares[f"{chr(col)}{row}"]) if self.squares[f"{chr(col)}{row}"] else "Empty" for col in range(ord('a'), ord('i'))]
             print(f"{', '.join(row_pieces)}")
+
+    def find_piece(self, symbol: str, identifier: int, color: str):
+        for square, piece in self.squares.items():
+            if piece and piece.symbol == symbol and piece.identifier == identifier and piece.color == color:
+                return square
+        return None
+    
+    def get_piece(self, square):
+        """Returns the piece that is on a specific square"""
+        return self.squares[square]
+
+    def is_square_empty(self, square):
+        """Returns True if the square is empty, False otherwise."""
+        return self.get_piece(square) is None
+    
+    def kill_piece(self, square):
+        """Removes a piece from the board by setting the square to None."""
+        piece = self.get_piece(square)
+        if piece:
+            piece.die()
+            self.squares[square] = None
