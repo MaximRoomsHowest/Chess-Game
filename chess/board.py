@@ -1,6 +1,15 @@
 class Board():
     def __init__(self):
         self.squares = self.create_board_dict()
+        # Place pieces on the board and let each piece know its board and position
+        self.setup_board()
+
+        # After setup_board has placed pieces into `self.squares`, inform each piece
+        for square, piece in self.squares.items():
+            if piece is not None:
+                # set the piece's position to the board key and give it a reference to this board
+                piece.set_initial_position(square)
+                piece.define_board(self)
 
     def create_board_dict(self):
         board = {}
@@ -11,7 +20,7 @@ class Board():
         return board
     
     def setup_board(self):
-        from pieces import Rook, Knight, Bishop, Queen, King, Pawn
+        from chess.pieces import Rook, Knight, Bishop, Queen, King, Pawn
         # Black pieces
         self.squares['a1'] = Rook('BLACK', 1, "A1") # This defines the first Rook of the BLACK team.
         self.squares['b1'] = Knight('BLACK', 1, "B1") # This defines the first Knight of the BLACK team.

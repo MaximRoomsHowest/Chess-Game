@@ -96,3 +96,119 @@ class BoardMovement:
 
         # Return the new position
         return f"{new_column}{row}"
+
+    @staticmethod
+    def forward_left(position: str, color: str = 'BLACK', squares: int = 1):
+        """
+        Move diagonally forward-left (combines forward and left).
+        """
+        column = position[0]
+        row = int(position[1])
+
+        if squares < 1:
+            raise ValueError("squares must be >= 1")
+
+        # Row movement depends on color
+        if color.upper() == 'WHITE':
+            new_row = row - squares
+        else:
+            new_row = row + squares
+
+        new_ord = ord(column) - squares
+
+        # Block edges: rows 1..8, columns 'a'..'h'
+        if new_row < 1 or new_row > 8 or new_ord < ord('a') or new_ord > ord('h'):
+            return None
+
+        new_column = chr(new_ord)
+        if new_column == '`' or new_column == 'i':
+            return None
+
+        return f"{new_column}{new_row}"
+
+    @staticmethod
+    def forward_right(position: str, color: str = 'BLACK', squares: int = 1):
+        """
+        Move diagonally forward-right (combines forward and right).
+        """
+        column = position[0]
+        row = int(position[1])
+
+        if squares < 1:
+            raise ValueError("squares must be >= 1")
+
+        # Row movement depends on color
+        if color.upper() == 'WHITE':
+            new_row = row - squares
+        else:
+            new_row = row + squares
+
+        new_ord = ord(column) + squares
+
+        # Block edges: rows 1..8, columns 'a'..'h'
+        if new_row < 1 or new_row > 8 or new_ord < ord('a') or new_ord > ord('h'):
+            return None
+
+        new_column = chr(new_ord)
+        if new_column == '`' or new_column == 'i':
+            return None
+
+        return f"{new_column}{new_row}"
+
+    @staticmethod
+    def backward_left(position: str, color: str = 'BLACK', squares: int = 1):
+        """
+        Move diagonally backward-left (combines backward and left).
+        """
+        column = position[0]
+        row = int(position[1])
+
+        if squares < 1:
+            raise ValueError("squares must be >= 1")
+
+        # Row movement depends on color (backward is inverse of forward)
+        if color.upper() == 'WHITE':
+            new_row = row + squares
+        else:
+            new_row = row - squares
+
+        new_ord = ord(column) - squares
+
+        # Block edges: rows 1..8, columns 'a'..'h'
+        if new_row < 1 or new_row > 8 or new_ord < ord('a') or new_ord > ord('h'):
+            return None
+
+        new_column = chr(new_ord)
+        if new_column == '`' or new_column == 'i':
+            return None
+
+        return f"{new_column}{new_row}"
+
+    @staticmethod
+    def backward_right(position: str, color: str = 'BLACK', squares: int = 1):
+        """
+        Move diagonally backward-right (combines backward and right).
+        """
+        column = position[0]
+        row = int(position[1])
+
+        if squares < 1:
+            raise ValueError("squares must be >= 1")
+
+        # Row movement depends on color (backward is inverse of forward)
+        if color.upper() == 'WHITE':
+            new_row = row + squares
+        else:
+            new_row = row - squares
+
+        new_ord = ord(column) + squares
+
+        # Block edges: rows 1..8, columns 'a'..'h'
+        if new_row < 1 or new_row > 8 or new_ord < ord('a') or new_ord > ord('h'):
+            return None
+
+        new_column = chr(new_ord)
+        if new_column == '`' or new_column == 'i':
+            return None
+
+        return f"{new_column}{new_row}"
