@@ -1,4 +1,5 @@
 from abc import abstractmethod, ABC
+import functools
 from chess.BoardMovement import BoardMovement
 
 class BaseChessPiece(ABC):
@@ -21,7 +22,29 @@ class BaseChessPiece(ABC):
         """Provide a reference to the Board instance this piece lives on."""
         self.board = board
 
+    @staticmethod
+    def print_board(func):
+        """Decorator to print the board after a move is executed."""
+        @functools.wraps(func)
+        def wrapper(self, *args, **kwargs):
+            result = func(self, *args, **kwargs)
+            # After the move, if we have a board reference, print the board
+            if hasattr(self, 'board') and self.board:
+                # Log the movement: show piece and destination (if any)
+                try:
+                    piece_desc = str(self)
+                except Exception:
+                    piece_desc = f"{self.name} {self.identifier}"
+                print(f"{piece_desc} -> {result}")
+                try:
+                    self.board.print_board()
+                except Exception:
+                    pass
+            return result
+        return wrapper
+
     @abstractmethod
+    @print_board
     def move(self, movement):
         """Move this piece to a new square. `movement` is the target square (or None).
 
