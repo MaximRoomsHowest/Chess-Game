@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABC
 import functools
-from chess.BoardMovement import BoardMovement
+from BoardMovement import BoardMovement
 
 class BaseChessPiece(ABC):
     def __init__(self, color, name, symbol, identifier, position):

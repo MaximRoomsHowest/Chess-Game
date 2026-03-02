@@ -20,7 +20,7 @@ class Board():
         return board
     
     def setup_board(self):
-        from chess.pieces import Rook, Knight, Bishop, Queen, King, Pawn
+        from pieces import Rook, Knight, Bishop, Queen, King, Pawn
         # Black pieces
         self.squares['a1'] = Rook('BLACK', 1, "A1") # This defines the first Rook of the BLACK team.
         self.squares['b1'] = Knight('BLACK', 1, "B1") # This defines the first Knight of the BLACK team.
